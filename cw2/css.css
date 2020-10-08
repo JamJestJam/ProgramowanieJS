@@ -1,0 +1,43 @@
+body{
+    background-color: #eee;
+}
+
+.lightbox{
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.8);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: all 0.6s;
+}
+
+.lightboxON{
+    transform: scale(1);
+}
+
+.lightboxOFF{
+    transform: scale(0);
+}
+
+.lightbox>img{
+    max-width: 80%;
+    max-height: 80%;
+}
+
+.prev{
+    font-size: 40pt;
+    background-color: black;
+    color: white;
+    cursor: pointer;
+}
+
+.next{
+    font-size: 40pt;
+    background-color: black;
+    color: white;
+    cursor: pointer;
+}
