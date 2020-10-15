@@ -8,18 +8,34 @@ body{
     left: 0;
     right: 0;
     bottom: 0;
-    background-color: rgba(0, 0, 0, 0.8);
+    display: flex;
+    justify-content: center;
+}
+
+.lightbox>div{
     display: flex;
     justify-content: center;
     align-items: center;
-    transition: all 0.6s;
-}
-
-.lightboxON{
-    transform: scale(1);
 }
 
 .lightboxOFF{
+    transform: scale(0);
+    background-color: rgba(0, 0, 0, 0.0);
+}
+
+.lightboxOn{
+    transform: scale(1);
+    background-color: rgba(0, 0, 0, 0.8);
+    transition: background-color 0.5s;
+}
+
+.lightboxOn>div{
+    transition: all 0.6s;
+    transform: scale(1);
+}
+
+.lightboxOFF>div{
+    transition: all 0.6s;
     transform: scale(0);
 }
 

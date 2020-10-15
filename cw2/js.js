@@ -13,8 +13,9 @@ lightbox.addEventListener('click', hideLightBox);
 prev.addEventListener('click', prevLightBox);
 next.addEventListener('click', nextLightBox);
 
-function nextLightBox() {
-    const img = document.querySelector('.lightbox>img');
+function nextLightBox(ev) {
+    ev.stopPropagation();
+    const img = document.querySelector('.lightbox>div>img');
     if (image.nextElementSibling != undefined) {
         img.src = image.nextElementSibling.src;
         image = image.nextElementSibling;
@@ -24,8 +25,9 @@ function nextLightBox() {
     }
 }
 
-function prevLightBox() {
-    const img = document.querySelector('.lightbox>img');
+function prevLightBox(ev) {
+    ev.stopPropagation();
+    const img = document.querySelector('.lightbox>div>img');
     if (image.previousElementSibling != undefined) {
         img.src = image.previousElementSibling.src;
         image = image.previousElementSibling;
@@ -43,7 +45,7 @@ function hideLightBox(event) {
 }
 
 function showLightBox(event) {
-    const img = document.querySelector('.lightbox>img');
+    const img = document.querySelector('.lightbox>div>img');
     lightbox.classList.add('lightboxOn');
     lightbox.classList.remove('lightboxOFF');
 
