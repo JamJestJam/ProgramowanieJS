@@ -1,18 +1,20 @@
 /* eslint-disable no-prototype-builtins */
 const tableSongs = {
-    'KeyQ': 'boom.wav',
-    'KeyW': 'clap.wav',
-    'KeyE': 'hihat.wav',
-    'KeyR': 'kick.wav',
-    'KeyT': 'openhat.wav',
-    'KeyS': 'ride.wav',
-    'KeyD': 'snare.wav',
-    'KeyF': 'tink.wav',
-    'KeyG': 'tom.wav',
+    'KeyQ': new Audio('./music/boom.wav'),
+    'KeyW': new Audio('./music/clap.wav'),
+    'KeyE': new Audio('./music/hihat.wav'),
+    'KeyR': new Audio('./music/kick.wav'),
+    'KeyT': new Audio('./music/openhat.wav'),
+    'KeyS': new Audio('./music/ride.wav'),
+    'KeyD': new Audio('./music/snare.wav'),
+    'KeyF': new Audio('./music/tink.wav'),
+    'KeyG': new Audio('./music/tom.wav'),
 };
 const tableKeys = {
     'Space': startStopRecord,
-    'Enter': playMusic
+    'Enter': playMusic,
+    'Numpad2': prevMS,
+    'Numpad8': nextMS
 };
 const playBTN = document.querySelector('#play');
 const recordBTN = document.querySelector('#record');
@@ -29,7 +31,7 @@ function keyPress(e) {
         play(tableSongs[e.code]);
 
         if (recordBTN.innerHTML == 'Stop') {
-            let music = musicList.options[musicList.options.length - 1];
+            const music = musicList.options[musicList.options.length - 1];
             music.arrayMusic.push({
                 'Date': Date.now() - music.startMusic,
                 'Song': tableSongs[e.code]
@@ -42,13 +44,9 @@ function keyPress(e) {
 
 function startStopRecord() {
     if (recordBTN.innerText == 'Record') {
-        let name = recordName.value;
-        if (name == '') {
-            alert('You have to name the recording');
-            return;
-        }
+        const name = recordName.value;
 
-        let option = new Option();
+        const option = new Option();
         option.value = name;
         option.text = name;
         option.startMusic = Date.now();
@@ -62,8 +60,8 @@ function startStopRecord() {
 }
 
 function playMusic() {
-    let nr = musicList.options.selectedIndex;
-    let music = musicList.options[nr].arrayMusic;
+    const nr = musicList.options.selectedIndex;
+    const music = musicList.options[nr].arrayMusic;
 
     if (nr == 0) {
         alert('no track selected');
@@ -75,11 +73,23 @@ function playMusic() {
     });
 }
 
-function play(musicName) {
-    let tmp = new Audio('./music/' + musicName);
-    tmp.play();
+function play(music) {
+    music.currentTime = 0;
+    music.play();
 }
 
 function stopPropagation(e) {
     e.stopPropagation();
+}
+
+function nextMS() {
+    let tmp = musicList.options;
+    if(tmp.selectedIndex < tmp.length-1)
+        tmp.selectedIndex++;
+}
+
+function prevMS() {
+    let tmp = musicList.options;
+    if(tmp.selectedIndex > 1)
+        tmp.selectedIndex--;
 }
