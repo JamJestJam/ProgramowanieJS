@@ -1,19 +1,70 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Notatnik</title>
     <link rel="stylesheet" href="css.css">
+    <link rel="stylesheet" href="fontello/css/fontello.css">
 </head>
+
 <body>
-    <head></head>
-    <nav></nav>
-    <main>
-            
+    <header>
+        <div id="head">
+            <div id="logo" class="center">
+                <i class="icon-sticky-note"></i>
+                Notatki++
+            </div>
+            <div id="search" class="center">
+                <input type="text">
+                <i class="icon-search-1" id="find"></i>
+            </div>
+        </div>
+    </header>
+    <div id="new">
+        <div class="hidden">
+            <div>
+                <div class="input">
+                    <input type="text" id="titleIn" required>
+                    <label>Tytul</label>
+                </div>
+                <div class="input">
+                    <textarea id="contentId" required></textarea>
+                    <label>Tresc</label>
+                </div>
+            </div>
+            <div class="center" style="align-items: flex-end;">
+                <div class="center icons">
+                    <div><i class="icon-bold"></i></div>
+                    <div><i class="icon-italic"></i></div>
+                    <div><i class="icon-underline"></i></div>
+                    <div><i class="icon-palette"></i></div>
+                </div>
+                <div id="close">Zamknij</div>
+            </div>
+        </div>
+        <div class="center" id="addNew">
+            <div>Utwórz nową notatkę</div>
+            <div class="icons">
+                <div id="enter"><i class="icon-list-add"></i></div>
+            </div>
+        </div>
+    </div>
+    <main id="content" class="center">
+        <div class="note">
+            <div class="title">Jakiś tytuł</div>
+            <div class="contents">Jakaś treść</div>
+            <div class="icons center">
+                <div><i class="icon-palette"></i></div>
+                <div><i class="icon-pin-outline"></i></div>
+                <div><i class="icon-trash-empty"></i></div>
+            </div>
+        </div>
     </main>
     <footer></footer>
 
     <script src="main.js"></script>
 </body>
+
 </html>

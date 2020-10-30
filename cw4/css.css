@@ -1,3 +1,189 @@
-const note = {
-    
+body{
+    margin: 0;
+    padding: 0;
+    background-color: #202124;
+}
+
+header{
+    position: -webkit-sticky;
+    position: sticky;
+    top: 0;
+    margin-bottom: 15px;
+}
+
+#head{
+    padding: 8px 10px;
+    display: flex;
+    justify-content: center;
+    font-size: 25pt;
+    color: white;
+    border-bottom: 4px #555555 solid;
+    background-color: #202124;
+}
+
+@import url('https://fonts.googleapis.com/css2?family=Anton&display=swap');
+#logo{
+    font-family: 'Anton', sans-serif;
+    font-weight: bolder;
+    text-shadow: black 1px 1px, 
+                black -1px -1px, 
+                black -1px 1px, 
+                black 1px -1px;
+}
+
+#logo>i{
+    text-shadow: black 1px 1px, 
+                black -1px -1px, 
+                black -1px 1px, 
+                black 1px -1px,
+                red 5px 5px;
+}
+
+#find{
+    cursor: pointer;
+}
+
+.center{
+    position: relative;
+    width: 100%;
+    display: flex;
+    align-items: center;
+}
+
+#search{
+    justify-content: flex-end;
+}
+
+#content{
+    width: 80%;
+    margin: 15px auto 0 auto;
+}
+
+#new{
+    width: 50%;
+    border-bottom: 4px #555555 solid;
+    border-right: 4px #555555 solid;
+    border-top: 1px #555555 solid;
+    border-left: 1px #555555 solid;
+    padding: 15px;
+    margin: 0 auto;
+    border-radius: 5px;
+}
+
+#new>div{
+    background-color: #202124;
+    border: none;
+    color: #80868b;
+    font-size: 15pt;
+    width: 100%;
+    margin-bottom: 5px;
+}
+
+.icons>div{
+    position: relative;
+    margin-top: 20px;
+    margin-bottom: 0;
+    margin-right: 10px;
+    padding: 10px;
+    border-radius: 100px;
+    width: 10px;
+    height: 10px;
+    cursor: pointer;
+}
+
+.icons>div:hover{
+    background-color: #303030;
+}
+
+.icons>div>i{
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    font-size: 12pt;
+    transform: translateX(-50%) translateY(-50%);
+}
+
+#close{
+    padding: 5px;
+    cursor: pointer;
+}
+
+#close:hover{
+    background-color: #303030;
+    border-radius: 2px;
+}
+
+.hidden{
+    height: 0;
+    overflow: hidden;
+}
+
+.input{
+    position: relative;
+    margin-bottom: 25px !important;
+}
+
+.input:last-child{
+    margin-bottom: 0 !important;
+}
+
+.input>input, .input>textarea{
+    font-size: 13pt;
+    width: 100%;
+    padding: 10px 0;
+    color: #fff;
+    border: none;
+    border-bottom: 1px solid #fff;
+    outline: none;
+    background: transparent;
+    resize: none;
+}
+
+.input>label {
+    position: absolute;
+    top:0;
+    left: 0;
+    padding: 10px 0;
+    color: #fff;
+    pointer-events: none;
+    transition: .5s;
+}
+  
+.input>input:focus ~ label,
+.input>input:valid ~ label{
+    top: -20px;
+    left: 0;
+    color: #ccc;
+    font-size: 12px;
+}
+
+.input>textarea:focus ~ label,
+.input>textarea:valid ~ label{
+    top: -25px;
+    left: 0;
+    color: #ccc;
+    font-size: 12px;
+}
+
+#addNew{
+    justify-content: space-between;
+}
+
+#enter{
+    margin: 0;
+}
+
+.note{
+    border-bottom: 4px #555555 solid;
+    border-right: 4px #555555 solid;
+    border-top: 1px #555555 solid;
+    border-left: 1px #555555 solid;
+    border-radius: 10px;
+
+    width: 30%;
+    padding: 15px;
+}
+
+#content{
+    color: #80868b;
 }
