@@ -16,31 +16,33 @@
                 <i class="icon-sticky-note"></i>
                 Notatki++
             </div>
-            <div id="search" class="center">
+            <div id="search" class="center hidden">
                 <input type="text">
                 <i class="icon-search-1" id="find"></i>
             </div>
         </div>
     </header>
     <div id="new">
-        <div class="hidden">
+        <div class="hidden" id="menuIn">
             <div>
                 <div class="input">
                     <input type="text" id="titleIn" required>
                     <label>Tytul</label>
                 </div>
                 <div class="input">
-                    <textarea id="contentId" required></textarea>
+                    <textarea id="contentIn" required></textarea>
                     <label>Tresc</label>
                 </div>
             </div>
             <div class="center" style="align-items: flex-end;">
                 <div class="center icons">
-                    <div><i class="icon-bold"></i></div>
-                    <div><i class="icon-italic"></i></div>
-                    <div><i class="icon-underline"></i></div>
-                    <div><i class="icon-palette"></i></div>
+                    <div id="bold"><i class="icon-bold"></i></div>
+                    <div id="italic"><i class="icon-italic"></i></div>
+                    <div id="underline"><i class="icon-underline"></i></div>
+                    <div id="color"><i class="icon-palette"></i></div>
+                    <div id="pin"><i class="icon-pin-outline"></i></div>
                 </div>
+                <div id="create">Utwórz</div>
                 <div id="close">Zamknij</div>
             </div>
         </div>
@@ -52,15 +54,7 @@
         </div>
     </div>
     <main id="content" class="center">
-        <div class="note">
-            <div class="title">Jakiś tytuł</div>
-            <div class="contents">Jakaś treść</div>
-            <div class="icons center">
-                <div><i class="icon-palette"></i></div>
-                <div><i class="icon-pin-outline"></i></div>
-                <div><i class="icon-trash-empty"></i></div>
-            </div>
-        </div>
+        
     </main>
     <footer></footer>
 
