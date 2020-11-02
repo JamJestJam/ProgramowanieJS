@@ -83,6 +83,8 @@ header{
 }
 
 .icons>div{
+    background-color: #202124;
+    border: 1px dotted black;
     position: relative;
     margin-top: 20px;
     margin-bottom: 0;
@@ -107,7 +109,7 @@ header{
     transform: translateX(-50%) translateY(-50%);
 }
 
-.active{
+.icons>.active{
     background-color: #333;
     color: #000;
 }
@@ -196,4 +198,8 @@ header{
 
 .title{
     color: white;
+}
+
+.none{
+    visibility: hidden;
 }
