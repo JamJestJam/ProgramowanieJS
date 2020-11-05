@@ -54,12 +54,13 @@ header{
     justify-content: flex-end;
 }
 
-#content{
+#content, #contentPin{
     position: relative;
     margin: 15px auto 0 auto;
     flex-wrap: wrap;
     color: #80868b;
     justify-content: space-evenly;
+    transition: 1s all;
 }
 
 #new{
@@ -71,6 +72,7 @@ header{
     padding: 15px;
     margin: 0 auto;
     border-radius: 5px;
+    transition: 1s all;
 }
 
 #new>div{
@@ -198,6 +200,11 @@ header{
 
 .title{
     color: white;
+    word-wrap: break-word;
+}
+
+.contents{
+    word-wrap: break-word;
 }
 
 .none{

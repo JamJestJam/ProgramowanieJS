@@ -38,7 +38,8 @@ const objects = {//lista obiektow pobranych z dokumentu
     color: document.querySelector('#color'),//kolor notatki
     colorIn: document.querySelector('#color>input'),
 
-    conteiner: document.querySelector('#content')
+    conteiner: document.querySelector('#content'),
+    conteinerPin: document.querySelector('#contentPin'),
 };
 
 let notes = [];//lista notatek na stronie
@@ -79,7 +80,7 @@ function createNewNote() {//pobiera dane z inputów i tworzy notatke
     notes.push(note);
     setNotesToLocalStorage();
 
-    createNoteHTML(title, context, color, bold, italic, underline, pin, note);
+    createNoteHTML(note);
     showHiddenMenu();
 }
 
@@ -110,7 +111,7 @@ function changeIconStatusHTML(div) {//event zmiany stanu przycisku
     else div.classList.add(cssClass.activeButton);
 }
 
-function createNoteHTML(noteTitle, noteContent, color, bold, italic, underline, pinned, note) {//tworzy notatke w htmlu
+function createNoteHTML(note) {//tworzy notatke w htmlu
     //podstawowe pojemniki
     const conteiner = document.createElement('div');
     const title = document.createElement('div');
@@ -119,6 +120,7 @@ function createNoteHTML(noteTitle, noteContent, color, bold, italic, underline, 
     //input koloru
     const colorIn = document.createElement('input');
 
+    //tworzenie ikon
     const createIcon = (iconClass, active, usable = true) => {//funkcja do tworzenia ikon
         const iconDiv = document.createElement('div');
         const iconI = document.createElement('i');
@@ -132,47 +134,109 @@ function createNoteHTML(noteTitle, noteContent, color, bold, italic, underline, 
         return iconDiv;
     };
 
-    //tworzenie ikon
-    const iconBold = createIcon(cssClass.bold, bold);
-    const iconitalic = createIcon(cssClass.italic, italic);
-    const iconUnderline = createIcon(cssClass.underline, underline);
-    const iconPin = createIcon(cssClass.pin, pinned);
+    const iconBold = createIcon(cssClass.bold, note.bold);
+    const iconitalic = createIcon(cssClass.italic, note.italic);
+    const iconUnderline = createIcon(cssClass.underline, note.underline);
+    const iconPin = createIcon(cssClass.pin, note.pinned);
     const iconColor = createIcon(cssClass.palette, false, false);
     const iconTrash = createIcon(cssClass.trash, false, false);
 
+    //funckja pomocnicza
+    const getStatus = (div) => {//sprawdza czy div zawiera klase activeButton
+        if (div.classList.contains(cssClass.activeButton))
+            return true;
+        return false;
+    };
+
+    const useBold = () => {//w razie potrzby uzywa pogrubienia
+        if (note.bold)
+            title.style.fontWeight = 'bolder';
+        else
+            title.style.fontWeight = 'unset';
+    };
+
+    const useItalic = () => {//w razie potrzby uzywa pochylenia textu
+        if (note.italic)
+            title.style.fontStyle = 'italic';
+        else
+            title.style.fontStyle = 'normal';
+    };
+
+    const useUnderline = () => {//w razie potrzby uzywa podkreslenia
+        if (note.underline)
+            title.style.textDecoration = 'underline';
+        else
+            title.style.textDecoration = 'unset';
+    };
+
+    const usePin = () => {//w razie potrzby uzywa przesowa notatke
+        //const noteID = notes.indexOf(note);
+        const noteNext = notes.findIndex(x => x.pinned == note.pinned && notes.indexOf(x) > notes.indexOf(note));
+        if (getStatus(iconPin)) {
+            if (noteNext == -1)
+                objects.conteinerPin.appendChild(conteiner);
+            else {
+                const before = document.querySelector('#Con' + noteNext);
+                objects.conteinerPin.insertBefore(conteiner, before);
+            }
+        }
+        else {
+            if (noteNext == -1)
+                objects.conteiner.appendChild(conteiner);
+            else {
+                const before = document.querySelector('#Con' + noteNext);
+                objects.conteiner.insertBefore(conteiner, before);
+            }
+        }
+    };
+
+    const useColor = () => {//w razie potrzby uzywa zmienia kolor
+        conteiner.style.backgroundColor = note.color;
+    };
+
     //funkcje zmiany stanu
-    const setBold = () => {
-
+    const setBold = () => {//zmienia status pogrubienia
+        note.bold = getStatus(iconBold);
+        useBold();
+        setNotesToLocalStorage();
     };
 
-    const setItalic = () => {
-
+    const setItalic = () => {//zmienia status pochylenia
+        note.italic = getStatus(iconitalic);
+        useItalic();
+        setNotesToLocalStorage();
     };
 
-    const setUnderline = () => {
-
+    const setUnderline = () => {//zmienia status podkreslenia
+        note.underline = getStatus(iconUnderline);
+        useUnderline();
+        setNotesToLocalStorage();
     };
 
-    const setBgColor = () => {
-
+    const setBgColor = () => {//zmienia status koloru
+        note.color = colorIn.value;
+        useColor();
+        setNotesToLocalStorage();
     };
 
-    const setPin = () => {
-
+    const setPin = () => {//zmienia status pina
+        note.pinned = getStatus(iconPin);
+        usePin();
+        setNotesToLocalStorage();
     };
 
-    const deleteObj = () => {
-
+    const deleteObj = () => {//usówa obiekt
+        conteiner.remove();
+        notes.splice(notes.indexOf(note), 1);
+        setNotesToLocalStorage();
     };
 
     //ustanowienie inputu koloru
     colorIn.type = 'color';
     colorIn.classList.add(cssClass.invInput);
     iconColor.appendChild(colorIn);
-    conteiner.style.backgroundColor = color;
 
     //wsadzenie pojemników w inne pojemniki
-    objects.conteiner.appendChild(conteiner);
     conteiner.appendChild(title);
     conteiner.appendChild(contents);
     conteiner.appendChild(icons);
@@ -185,12 +249,25 @@ function createNoteHTML(noteTitle, noteContent, color, bold, italic, underline, 
     icons.classList.add(cssClass.center);
 
     //eventy
+    colorIn.addEventListener('change', setBgColor);
     iconColor.addEventListener('click', () => setColor(colorIn));
-    colorIn.addEventListener('change', () => setDivColor(conteiner, colorIn));
+    iconBold.addEventListener('click', setBold);
+    iconitalic.addEventListener('click', setItalic);
+    iconUnderline.addEventListener('click', setUnderline);
+    iconPin.addEventListener('click', setPin);
+    iconTrash.addEventListener('click', deleteObj);
+
+    //ustawienia wstepne
+    useBold();
+    useColor();
+    useItalic();
+    useUnderline();
+    usePin();
 
     //ustanowienie tresci notatki
-    title.innerText = noteTitle;
-    contents.innerText = noteContent;
+    conteiner.id = 'Con' + notes.indexOf(note);
+    title.innerText = note.title;
+    contents.innerText = note.context;
 
     return conteiner;
 }
@@ -209,10 +286,10 @@ function setNotesToLocalStorage() {//zapisuje notatki w LS
     localStorage.setItem(LSnoteObjName, JSON.stringify(notes));
 }
 
-function createNewNoteObj(title, context, colour, pin, bold, italic, underline, date = new Date()) {//tworzy nowy obiekt notatki
+function createNewNoteObj(title, context, color, pin, bold, italic, underline, date = new Date()) {//tworzy nowy obiekt notatki
     this.title = title;
     this.context = context;
-    this.colour = colour;
+    this.color = color;
     this.pinned = pin;
     this.bold = bold;
     this.italic = italic;
@@ -223,5 +300,11 @@ function createNewNoteObj(title, context, colour, pin, bold, italic, underline, 
 //pierwsze działania
 getNotesFromLocalStorage();
 notes.forEach(note => {
-    createNoteHTML(note.title, note.context, note.colour, note.bold, note.italic, note.undefined, note.pinned);
+    createNoteHTML(note);
 });
+
+function tmp(imie, nazwisko, cw1 ,cw2, cw3){
+    console.log(cw2);
+}
+
+tmp({cw2 : 3});
