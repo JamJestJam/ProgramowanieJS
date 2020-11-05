@@ -297,14 +297,8 @@ function createNewNoteObj(title, context, color, pin, bold, italic, underline, d
     this.createDate = date;
 }
 
-//pierwsze działania
+//pierwsze działanie
 getNotesFromLocalStorage();
 notes.forEach(note => {
     createNoteHTML(note);
 });
-
-function tmp(imie, nazwisko, cw1 ,cw2, cw3){
-    console.log(cw2);
-}
-
-tmp({cw2 : 3});
