@@ -1,7 +1,7 @@
 import { Ball } from './Ball.js';
 import { Circle } from './Circle.js';
 import { Rand } from './Random.js';
-import { svgControler, svgNS } from './SvgControler.js';
+import { svgControler } from './SvgControler.js';
 
 class Game {
     constructor(holeNr = 10) {
