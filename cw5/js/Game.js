@@ -26,10 +26,10 @@ class Game {
         this.speedX = alpha / 90;
 
         if (this.speedX > 1) {
-            this.speedX = Math.abs(2 - this.speedX);
+            this.speedX = 2 - this.speedX;
         }
         else if (this.speedX < -1) {
-            this.speedX = -Math.abs(2 + this.speedX);
+            this.speedX = -(2 + this.speedX);
         }
     }
 
