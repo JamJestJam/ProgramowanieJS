@@ -1,54 +1,98 @@
-const images = document.querySelectorAll('.gallery>img');
-const lightbox = document.querySelector('.lightbox');
-const prev = document.querySelector('.prev');
-const next = document.querySelector('.next');
-let image;
+/* eslint-disable no-prototype-builtins */
 
-images.forEach(element => {
-    element.addEventListener('click', showLightBox);
-});
+(function () {
+    const tableSongs = {
+        'KeyQ': new Audio('./music/boom.wav'),
+        'KeyW': new Audio('./music/clap.wav'),
+        'KeyE': new Audio('./music/hihat.wav'),
+        'KeyR': new Audio('./music/kick.wav'),
+        'KeyT': new Audio('./music/openhat.wav'),
+        'KeyS': new Audio('./music/ride.wav'),
+        'KeyD': new Audio('./music/snare.wav'),
+        'KeyF': new Audio('./music/tink.wav'),
+        'KeyG': new Audio('./music/tom.wav'),
+    };
+    const tableKeys = {
+        'Space': startStopRecord,
+        'Enter': playMusic,
+        'Numpad2': prevMS,
+        'Numpad8': nextMS
+    };
+    const playBTN = document.querySelector('#play');
+    const recordBTN = document.querySelector('#record');
+    const recordName = document.querySelector('#RecordName');
+    const musicList = document.querySelector('#music');
 
-lightbox.addEventListener('click', hideLightBox);
+    document.addEventListener('keypress', keyPress);
+    recordBTN.addEventListener('click', startStopRecord);
+    recordName.addEventListener('keypress', stopPropagation);
+    playBTN.addEventListener('click', playMusic);
 
-prev.addEventListener('click', prevLightBox);
-next.addEventListener('click', nextLightBox);
+    function keyPress(e) {
+        if (tableSongs.hasOwnProperty(e.code)) {
+            play(tableSongs[e.code]);
 
-function nextLightBox(ev) {
-    ev.stopPropagation();
-    const img = document.querySelector('.lightbox>div>img');
-    if (image.nextElementSibling != undefined) {
-        img.src = image.nextElementSibling.src;
-        image = image.nextElementSibling;
-    } else {
-        img.src = images[0].src;
-        image = images[0];
+            if (recordBTN.innerHTML == 'Stop') {
+                const music = musicList.options[musicList.options.length - 1];
+                music.arrayMusic.push({
+                    'Date': Date.now() - music.startMusic,
+                    'Song': tableSongs[e.code]
+                });
+            }
+        } else if (tableKeys.hasOwnProperty(e.code)) {
+            tableKeys[e.code]();
+        }
     }
-}
 
-function prevLightBox(ev) {
-    ev.stopPropagation();
-    const img = document.querySelector('.lightbox>div>img');
-    if (image.previousElementSibling != undefined) {
-        img.src = image.previousElementSibling.src;
-        image = image.previousElementSibling;
-    } else {
-        img.src = images[images.length - 1].src;
-        image = images[images.length - 1];
+    function startStopRecord() {
+        if (recordBTN.innerText == 'Record') {
+            const name = recordName.value;
+
+            const option = new Option();
+            option.value = name;
+            option.text = name;
+            option.startMusic = Date.now();
+            option.arrayMusic = new Array();
+            musicList.options.add(option);
+
+            recordBTN.innerHTML = 'Stop';
+        } else {
+            recordBTN.innerHTML = 'Record';
+        }
     }
-}
 
-function hideLightBox(event) {
-    if (event.target == lightbox) {
-        lightbox.classList.remove('lightboxOn');
-        lightbox.classList.add('lightboxOFF');
+    function playMusic() {
+        const nr = musicList.options.selectedIndex;
+        const music = musicList.options[nr].arrayMusic;
+
+        if (nr == 0) {
+            alert('no track selected');
+            return;
+        }
+
+        music.forEach(element => {
+            setTimeout(() => play(element.Song), element.Date);
+        });
     }
-}
 
-function showLightBox(event) {
-    const img = document.querySelector('.lightbox>div>img');
-    lightbox.classList.add('lightboxOn');
-    lightbox.classList.remove('lightboxOFF');
+    function play(music) {
+        music.currentTime = 0;
+        music.play();
+    }
 
-    img.src = event.target.src;
-    image = event.target;
-}
+    function stopPropagation(e) {
+        e.stopPropagation();
+    }
+
+    function nextMS() {
+        let tmp = musicList.options;
+        if (tmp.selectedIndex < tmp.length - 1)
+            tmp.selectedIndex++;
+    }
+
+    function prevMS() {
+        let tmp = musicList.options;
+        if (tmp.selectedIndex > 1)
+            tmp.selectedIndex--;
+    }
+})();
