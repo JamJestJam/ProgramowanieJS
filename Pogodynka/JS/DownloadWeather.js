@@ -1,6 +1,6 @@
 class WeatherDownload {
     constructor() {
-        this.server = 'https://api.openweathermap.org/data/2.5/weather?q={City}&appid={Key}';
+        this.server = 'https://api.openweathermap.org/data/2.5/weather?q={City}&appid={Key}&units=metric';
         this.key = 'a38e5cc25081eaae34374bdb094f0c5f';
     }
 
