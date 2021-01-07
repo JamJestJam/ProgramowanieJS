@@ -7,6 +7,16 @@ class EventHandler {
 
         record.recordBTN.addEventListener('click', record.StartStopRecord);
         record.playBTN.addEventListener('click', record.Play);
+
+        const keys = document.querySelectorAll('.Key');
+
+        keys.forEach(ele => {
+            ele.addEventListener('click',
+                () => {
+                    this.keyPress({ code: 'Key' + ele.childNodes[1].innerText })
+                }
+            );
+        });
     }
 
     keyPress = (e) => {
