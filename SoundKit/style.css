@@ -1,0 +1,47 @@
+body{
+    margin: 0;
+    background-color: #EDEAD4;
+}
+
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@900&display=swap');
+
+#Bar{
+    background-color: #7F8BA1;
+    font-family: 'Roboto', sans-serif;
+    font-weight: bolder;
+    font-size: 20pt;
+    padding: 10px;
+}
+
+#Context{
+    background-color: #C7D5ED;
+    width: 1200px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+#Keys{
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    padding: 10px;
+}
+
+.Key{
+    cursor: pointer;
+    padding: 5px;
+    margin: 5px;
+    width: 100px;
+    height: 100px;
+    background-color: #E3C7ED;
+}
+
+.Key:hover{
+    background-color: #977FA1;
+}
+
+.Key > span{
+    display: block;
+    font-size: 20pt;
+    text-align: center;
+}
