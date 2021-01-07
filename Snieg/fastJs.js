@@ -4,8 +4,9 @@ const EleInBit = countEle / CanvasCount;
 
 const canvas = document.querySelector('#Canvas');
 const ctx = canvas.getContext('2d');
-let width = canvas.width;
-let height = canvas.height;
+const width = canvas.width;
+const height = canvas.height;
+const lenght = canvas.height;
 
 const CanvasArr = new Array();
 
@@ -15,12 +16,12 @@ function randomNum(min, max) {
 
 function CreateCanvas(eleList = EleInBit) {
     const canvasIn = document.createElement('canvas');
-    canvasIn.width = width;
-    canvasIn.height = height;
+    canvasIn.width = lenght;
+    canvasIn.height = lenght;
     const ctxIn = canvasIn.getContext('2d');
     DrawSnow(ctxIn, eleList);
 
-    const img = ctxIn.getImageData(0, 0, width, height);
+    const img = ctxIn.getImageData(0, 0, lenght, lenght);
     return createImageBitmap(img).then((bitmap) => {
         CanvasArr.push({
             image: bitmap,
@@ -35,7 +36,7 @@ function CreateCanvas(eleList = EleInBit) {
 function DrawSnow(ctxIn, eleList) {
     for (let i = 0; i < eleList; i++) {
         ctxIn.beginPath();
-        ctxIn.arc(randomNum(15, width - 15), randomNum(15, height - 15), randomNum(1, 15), 0, 2 * Math.PI);
+        ctxIn.arc(randomNum(15, lenght - 15), randomNum(15, lenght - 15), randomNum(1, 15), 0, 2 * Math.PI);
         ctxIn.fillStyle = 'rgba(255, 255, 255, 1)';
         ctxIn.closePath();
         ctxIn.fill();
