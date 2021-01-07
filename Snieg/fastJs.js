@@ -1,4 +1,4 @@
-const countEle = 500;
+const countEle = 6000;
 const CanvasCount = 20;
 const EleInBit = countEle / CanvasCount;
 
@@ -21,14 +21,13 @@ function CreateCanvas(eleList = EleInBit) {
     DrawSnow(ctxIn, eleList);
 
     const img = ctxIn.getImageData(0, 0, width, height);
-    createImageBitmap(img).then((bitmap) => {
+    return createImageBitmap(img).then((bitmap) => {
         CanvasArr.push({
             image: bitmap,
             x: randomNum(-width,width),
             y: randomNum(-height,height),
             speedX: randomNum(1, 5),
             speedY: randomNum(1, 5),
-            sinSpeed: randomNum(0.01, 0.03)
         });
     });
 }
@@ -59,8 +58,10 @@ function Animate() {
     requestAnimationFrame(Animate);
 }
 
-for (let i = 0; i < CanvasCount; i++) {
-    CreateCanvas();
-}
+(async()=>{
+    for (let i = 0; i < CanvasCount; i++) {
+        await CreateCanvas();
+    }
 
-Animate();
+    Animate();
+})();
