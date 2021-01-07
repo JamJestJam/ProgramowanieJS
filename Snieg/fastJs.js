@@ -4,8 +4,8 @@ const EleInBit = countEle / CanvasCount;
 
 const canvas = document.querySelector('#Canvas');
 const ctx = canvas.getContext('2d');
-const width = canvas.width;
-const height = canvas.height;
+let width = canvas.width;
+let height = canvas.height;
 
 const CanvasArr = new Array();
 
