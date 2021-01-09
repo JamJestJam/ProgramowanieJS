@@ -41,14 +41,21 @@ class RecordHandler{
 
     Play=()=>{
         const nr = this.recordList.options.selectedIndex;
-        const music = this.recordList.options[nr].arrayMusic;
-
+        
         if (nr == 0) {
             alert('no track selected');
             return;
         }
+        
+        const musics = this.recordList.querySelectorAll(':checked');
 
-        music.forEach(element => {
+        musics.forEach(ele=>{
+            this.play(ele);
+        });
+    }
+
+    play(music){
+        music.arrayMusic.forEach(element => {
             setTimeout(() => musicBox.play(element.Key), element.Date);
         });
     }

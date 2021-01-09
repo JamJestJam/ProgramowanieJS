@@ -11,11 +11,9 @@ class EventHandler {
         const keys = document.querySelectorAll('.Key');
 
         keys.forEach(ele => {
-            ele.addEventListener('click',
-                () => {
-                    this.keyPress({ code: 'Key' + ele.childNodes[1].innerText })
-                }
-            );
+            ele.addEventListener('click', () => {
+                this.keyPress({ code: 'Key' + ele.childNodes[0].childNodes[2].innerText });
+            });
         });
     }
 

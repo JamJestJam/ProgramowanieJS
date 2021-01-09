@@ -29,10 +29,11 @@ body{
 
 .Key{
     cursor: pointer;
+    position: relative;
     padding: 5px;
     margin: 5px;
     width: 100px;
-    height: 100px;
+    height: 300px;
     background-color: #E3C7ED;
 }
 
@@ -42,6 +43,56 @@ body{
 
 .Key > span{
     display: block;
+    position: absolute;
     font-size: 20pt;
     text-align: center;
+    left: 50%;
+    top: 50%;
+    transform: translateX(-50%) translateY(-50%);
+}
+
+#Buttons{
+    display: flex;
+    justify-content: space-between;
+    padding: 30px;
+}
+
+.Input{
+    width: 360px;
+    background: #fff;
+    font: inherit;
+    box-shadow: 0 6px 10px 0 rgba(0, 0, 0 , .1);
+    border: 0;
+    outline: 0;
+    padding: 22px 18px;
+}
+
+#record{
+    margin-left: -96px;
+}
+
+.btn{
+    display: inline-block;
+	background: transparent;
+	color: inherit;
+    font: inherit;
+	border: 0;
+	outline: 0;
+	padding: 0;
+	transition: all 200ms ease-in;
+    cursor: pointer;
+    
+    background: #7f8ff4;
+    box-shadow: 0 0 10px 2px rgba(0, 0, 0, .1);
+    border-radius: 2px;
+    padding: 12px 36px;
+}
+
+.btn:hover{
+    background: #5f6fd4;
+}
+
+#play{
+    position: absolute;
+    transform: translateX(-100%);
 }
