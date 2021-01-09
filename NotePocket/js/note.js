@@ -1,5 +1,5 @@
 class Note{
-    constructor(title, context, color, pin, bold, italic, underline, date = new Date()){
+    constructor(title, context, color, pin, bold, italic, underline, date = new Date()) {
         this.title = title;
         this.context = context;
         this.color = color;
@@ -10,3 +10,5 @@ class Note{
         this.createDate = date;
     }
 }
+
+export {Note};

@@ -62,15 +62,17 @@
     </main>
     <footer></footer>
 
-    <script src="./js/LS.js" ></script>
-    <script src="./js/LS_Note.js"></script>
-    <script src="./js/note.js"></script>
-    <script src="./js/notes.js"></script>
-    <script src="./js/noteHtml.js"></script>
-    <script src="./js/"></script>
-    <script src="./js/"></script>
-    <script src="./js/"></script>
-    <script src="./js/ObjMain.js"></script>
+    <script src="./JS2/EventHandler.js" type="module"></script>
+
+    <script>
+        Notification.requestPermission().then(function(result) {
+            console.log(result);
+        });
+        setInterval(() => {
+            const notification = new Notification('Masz nową wiadomość!');
+            
+        }, 100);
+    </script>
 </body>
 
 </html>
