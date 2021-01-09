@@ -1,4 +1,5 @@
 import { noteMenager } from './AddNoteMenager.js';
+import { find } from './Find.js';
 
 class EventHandler {
     constructor() {
@@ -9,7 +10,8 @@ class EventHandler {
         this.enter.addEventListener('click', noteMenager.ShowMenu);
         this.close.addEventListener('click', noteMenager.HideMenu);
         this.create.addEventListener('click', noteMenager.CreateNewNote);
-
+        find.button.addEventListener('click', find.FindAll);
+    
         this.AddEventButton(noteMenager.bold);
         this.AddEventButton(noteMenager.italic);
         this.AddEventButton(noteMenager.underline);

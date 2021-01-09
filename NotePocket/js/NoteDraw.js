@@ -115,6 +115,14 @@ class NoteDraw {
         this.conteiner.style.backgroundColor = this.note.color;
     };
 
+    Hide(){
+        this.conteiner.remove();
+    }
+
+    Show(){
+        this.UsePin();
+    }
+
     CreateHtml() {
         this.conteiner = document.createElement('div');
         this.title = document.createElement('div');

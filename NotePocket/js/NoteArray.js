@@ -1,35 +1,43 @@
 import { lsNote } from './LS_Note.js';
 import { NoteDraw } from './NoteDraw.js';
-import { notification } from './Notification.js'; 
+import { notification } from './Notification.js';
 
-class NoteArray{
-    constructor(){
+class NoteArray {
+    constructor() {
         this.GetLS();
     }
 
-    GetLS(){
+    GetLS() {
         const note = lsNote.getNote();
-        if(note == undefined)
-            this.noteArray = new Array(); 
-        else{
+        if (note == undefined)
+            this.noteArray = new Array();
+        else {
             this.noteArray = note;
         }
+
+        this.elements = new Array();
     }
 
-    AddNewNote(note){
+    AddNewNote(note) {
         this.noteArray.push(note);
         lsNote.setNote(this.noteArray);
-        new NoteDraw(note);
+        this.elements.push({ ele: new NoteDraw(note), note: note });
         notification.AddNewDate(note.time, note.title);
     }
 
-    Save(){
+    Save() {
         lsNote.setNote(this.noteArray);
     }
 
-    DrawAll(){
+    NotifyAll() {
         this.noteArray.forEach(element => {
-            new NoteDraw(element);
+            notification.AddNewDate(element.time, element.title);
+        });
+    }
+
+    DrawAll() {
+        this.noteArray.forEach(element => {
+            this.elements.push({ ele: new NoteDraw(element), note: element });
             notification.AddNewDate(element.time, element.title);
         });
     }
@@ -37,5 +45,6 @@ class NoteArray{
 
 const noteArray = new NoteArray();
 noteArray.DrawAll();
+noteArray.NotifyAll();
 
-export {noteArray};
+export { noteArray };
