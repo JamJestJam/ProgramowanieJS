@@ -33,6 +33,10 @@
                     <textarea id="contentIn" required></textarea>
                     <label>Tresc</label>
                 </div>
+                <div class="input">
+                    <input id="date" type="datetime-local" required>
+                    <label>Data powiadomienia</label>
+                </div>
             </div>
             <div class="center" style="align-items: flex-end;">
                 <div class="center icons">
@@ -62,17 +66,7 @@
     </main>
     <footer></footer>
 
-    <script src="./JS2/EventHandler.js" type="module"></script>
-
-    <script>
-        Notification.requestPermission().then(function(result) {
-            console.log(result);
-        });
-        setInterval(() => {
-            const notification = new Notification('Masz nową wiadomość!');
-            
-        }, 100);
-    </script>
+    <script src="./JS/EventHandler.js" type="module"></script>
 </body>
 
 </html>

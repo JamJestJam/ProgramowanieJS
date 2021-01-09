@@ -1,5 +1,6 @@
 import { lsNote } from './LS_Note.js';
 import { NoteDraw } from './NoteDraw.js';
+import { notification } from './Notification.js'; 
 
 class NoteArray{
     constructor(){
@@ -19,6 +20,7 @@ class NoteArray{
         this.noteArray.push(note);
         lsNote.setNote(this.noteArray);
         new NoteDraw(note);
+        notification.AddNewDate(note.time, note.title);
     }
 
     Save(){
@@ -28,6 +30,7 @@ class NoteArray{
     DrawAll(){
         this.noteArray.forEach(element => {
             new NoteDraw(element);
+            notification.AddNewDate(element.time, element.title);
         });
     }
 }

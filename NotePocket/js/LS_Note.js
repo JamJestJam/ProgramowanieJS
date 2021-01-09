@@ -14,7 +14,8 @@ class LS_Note {
         if (element != undefined) {
             return element.map(note => {
                 note.createDate = new Date(note.createDate);
-
+                note.time = new Date(note.time);
+                
                 return note;
             });
         }

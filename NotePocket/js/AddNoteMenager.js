@@ -22,6 +22,7 @@ class AddNoteMenager {
         this.underline = document.querySelector('#underline');
         this.color = document.querySelector('#color');
         this.colorIn = document.querySelector('#color>input');
+        this.time = document.querySelector('#date');
     }
 
     ChangeButtonState = (button) => {
@@ -62,6 +63,7 @@ class AddNoteMenager {
             this.bold.classList.contains(this.cssClass_ActiveButton),
             this.italic.classList.contains(this.cssClass_ActiveButton),
             this.underline.classList.contains(this.cssClass_ActiveButton),
+            new Date(this.time.value)
         );
 
         noteArray.AddNewNote(note);
