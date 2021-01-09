@@ -37,6 +37,7 @@ class AddNoteMenager {
     ShowMenu = () => {
         this.menuClass.classList.add(this.cssClass_HideMenu);
         this.mainClass.classList.remove(this.cssClass_HideMenu);
+        this.ClearNote();
     }
 
     HideMenu = () => {
@@ -52,6 +53,23 @@ class AddNoteMenager {
         this.italic.classList.remove(this.cssClass_ActiveButton);
         this.pin.classList.remove(this.cssClass_ActiveButton);
         this.color.style.backgroundColor = '';
+
+        function ZeroCount(text, count) {
+            text = text.toString();
+            while (text.length < count) {
+                text = '0' + text;
+            }
+            return text;
+        }
+
+        const date = new Date();
+        const year = ZeroCount(date.getFullYear(), 4);
+        const month = ZeroCount(date.getMonth() + 1, 2);
+        const day = ZeroCount(date.getDay(), 2);
+        const hours = ZeroCount(date.getHours(), 2);
+        const min = ZeroCount(date.getMinutes() - 1, 2);
+
+        this.time.value = `${year}-${month}-${day}T${hours}:${min}`;
     }
 
     CreateNewNote = () => {
