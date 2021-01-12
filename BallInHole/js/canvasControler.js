@@ -19,8 +19,8 @@ class CanvasControler {
         this.height = window.innerHeight;
     }
 
-    SetPosCentX(value) { this.x = value; }
-    SetPosCentY(value) { this.y = value; }
+    SetPosCentX(value) { this.x = -value; }
+    SetPosCentY(value) { this.y = -value; }
 
     GetPosCentX() { return this.width / 2 + this.x; }
     GetPosCentY() { return this.height / 2 + this.y; }

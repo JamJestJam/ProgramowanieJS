@@ -1,7 +1,7 @@
 import { CanvasObj } from './canvasObj.js';
 
 class Circle extends CanvasObj {
-    constructor(canvas, cx, cy, r, color = 'black') {
+    constructor(canvas, cx, cy, r, color) {
         super(canvas, cx, cy);
 
         this.cx = cx;
@@ -10,7 +10,7 @@ class Circle extends CanvasObj {
         this.color = color;
     }
 
-    Draw = () => {
+    Draw() {
         this.canvas.ctx.beginPath();
         this.canvas.ctx.fillStyle = this.color;
         this.canvas.ctx.arc(this.X, this.Y, this.r, 0, 2 * Math.PI);
@@ -18,7 +18,7 @@ class Circle extends CanvasObj {
         this.canvas.ctx.fill();
     }
 
-    CollideWithPoint = (x, y) => {
+    CollideWithPoint(x, y) {
         return ((x - this.cx) * (x - this.cx)) + ((y - this.cy) * (y - this.cy)) < this.r * this.r;
     }
 }

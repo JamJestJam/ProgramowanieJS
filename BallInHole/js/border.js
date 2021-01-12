@@ -10,7 +10,7 @@ class Border extends CanvasObj {
         this.color = color;
     }
 
-    Draw = () => {
+    Draw() {
         this.canvas.ctx.beginPath();
         this.canvas.ctx.lineWidth = this.strokeWidth;
         this.canvas.ctx.rect(this.X, this.Y, this.width, this.height);
@@ -19,7 +19,7 @@ class Border extends CanvasObj {
         this.canvas.ctx.stroke();
     }
 
-    CollideWithPoint = (x, y) => {
+    CollideWithPoint(x, y) {
         if (x < this.x || x > this.x + this.width)
             return true;
         if (y < this.y || y > this.y + this.height)
