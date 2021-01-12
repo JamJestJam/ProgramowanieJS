@@ -28,8 +28,10 @@ class Ball extends Circle {
     }
 
     Move(x, y) {
-        this.x += x;
-        this.y += y;
+        if(x!==undefined)
+            this.x += x;
+        if(y!=undefined)
+            this.y += y;
         this.MoveTrackers();
     }
 
