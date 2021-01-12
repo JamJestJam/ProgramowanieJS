@@ -1,65 +1,32 @@
-import { Ball } from './Ball.js';
+import { Border } from './Border.js';
+import { CanvasControler } from './canvasControler.js';
 import { Circle } from './Circle.js';
-import { Rand } from './Random.js';
-import { svgControler } from './SvgControler.js';
 
 class Game {
-    constructor(holeNr = 10) {
-        this.player = new Ball();
-        this.player.use();
-        this.holeArr = new Array();
+    constructor(gameWidth = 1000, gameHeight = 1000) {
+        this.canvasControler = new CanvasControler();
 
-        for (let i = 0; i < holeNr; i++) {
-            const tmp = new Circle(25, Rand.getRandomIntInclusive(0, svgControler.width), Rand.getRandomIntInclusive(0, svgControler.height), 'black');
-            tmp.use();
-            this.holeArr.push(tmp);
-        }
+        this.border = new Border(this.canvasControler, gameWidth, gameHeight);
+        this.circle = new Circle(this.canvasControler, 0, 0, 15);
 
-        this.speedX = 0;
-        this.speedY = 0;
-
-        window.addEventListener('deviceorientation', this.setSpeed);
-        setInterval(this.update, 10);
+        this.Loop();
     }
 
-    speedHoryzontal(alpha) {
-        this.speedX = alpha / 90;
+    Loop = () => {
+        this.UpdateAll();
+        this.DrawAll();
 
-        if (this.speedX > 1) {
-            this.speedX = 2 - this.speedX;
-        }
-        else if (this.speedX < -1) {
-            this.speedX = -(2 + this.speedX);
-        }
+        requestAnimationFrame(this.Loop);
     }
 
-    speedVertical(beta) {
-        this.speedY = (beta - 90) / 90;
-
-        if (this.speedY < -2) {
-            this.speedY = -(2 + this.speedY);
-        }
-        else if (this.speedY < -1) {
-            this.speedY = -Math.abs(2 + this.speedY);
-        }
+    DrawAll() {
+        this.canvasControler.clear();
+        this.border.Draw();
+        this.circle.Draw();
     }
 
-    setSpeed = (e) => {
-        this.speedHoryzontal(e.alpha);
-        this.speedVertical(e.beta);
-    }
-
-    update = () => {
-        this.player.move(this.speedX, this.speedY);
-
-        for (let i = 0; i < this.holeArr.length; i++) {
-            const Ele = this.holeArr[i];
-            if (Ele.CircleOverlap(this.player)) {
-                alert('Koniec gry');
-                this.holeArr.length = 0;
-                this.player.move=()=>{};
-            }
-        }
+    UpdateAll() {
+        
     }
 }
 

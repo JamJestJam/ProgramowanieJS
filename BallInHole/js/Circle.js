@@ -1,31 +1,25 @@
-import { SvgObj } from './SvgObj.js';
-import { svgNS } from './SvgControler.js';
+import { CanvasObj } from './canvasObj.js';
 
-class Circle extends SvgObj {
-    constructor(r = 10, cx = 0, cy = 0, color = 'gray', stroke = 'black', strokeWidth = 2) {
-        super('cx', 'cy');
-        this.svg = document.createElementNS(svgNS, 'circle');
+class Circle extends CanvasObj {
+    constructor(canvas, cx, cy, r, color = 'black') {
+        super(canvas, cx, cy);
 
-        this.X = cx;
-        this.Y = cy;
-        this.R = r;
-
-        this.svg.setAttribute('r', r);
-        this.svg.setAttribute('stroke', stroke);
-        this.svg.setAttribute('stroke-width', strokeWidth);
-        this.svg.setAttribute('fill', color);
+        this.cx = cx;
+        this.cy = cy;
+        this.r = r;
+        this.color = color;
     }
 
-    static DistanceBetweenCircles(a, b) {
-        return Math.sqrt((a.X - b.X) ** 2 + (a.Y - b.Y) ** 2);
+    Draw = () => {
+        this.canvas.ctx.beginPath();
+        this.canvas.ctx.fillStyle = this.color;
+        this.canvas.ctx.arc(this.X, this.Y, this.r, 0, 2 * Math.PI);
+        this.canvas.ctx.closePath();
+        this.canvas.ctx.fill();
     }
 
-    ColisionCircle(circle) {
-        return (Circle.DistanceBetweenCircles(this, circle) < this.R + circle.R);
-    }
-
-    CircleOverlap(circle) {
-        return (Circle.DistanceBetweenCircles(this, circle) < ((this.R > circle.R) ? this.R - (circle.R / 2) : circle.R - (this.R / 2)));
+    CollideWithPoint = (x, y) => {
+        return ((x - this.cx) * (x - this.cx)) + ((y - this.cy) * (y - this.cy)) < this.r * this.r;
     }
 }
 

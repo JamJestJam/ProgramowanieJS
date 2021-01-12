@@ -61,11 +61,10 @@ class AddNoteMenager {
             }
             return text;
         }
-
         const date = new Date();
         const year = ZeroCount(date.getFullYear(), 4);
         const month = ZeroCount(date.getMonth() + 1, 2);
-        const day = ZeroCount(date.getDay(), 2);
+        const day = ZeroCount(date.getDate(), 2);
         const hours = ZeroCount(date.getHours(), 2);
         const min = ZeroCount(date.getMinutes() - 1, 2);
 
