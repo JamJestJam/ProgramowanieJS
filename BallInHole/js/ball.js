@@ -28,9 +28,9 @@ class Ball extends Circle {
     }
 
     Move(x, y) {
-        if(x!==undefined)
+        if (x !== undefined)
             this.x += x;
-        if(y!=undefined)
+        if (y != undefined)
             this.y += y;
         this.MoveTrackers();
     }

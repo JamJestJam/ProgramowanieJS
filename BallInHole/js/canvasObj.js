@@ -10,6 +10,13 @@ class CanvasObj {
     // eslint-disable-next-line no-unused-vars
     CollideWithPoint(x, y) { return false; }
 
+    OnColision = () => { };
+
+    TestCol(x, y) {
+        if (this.CollideWithPoint(x, y))
+            this.OnColision();
+    }
+
     get X() { return this.x + this.canvas.X; }
     get Y() { return this.y + this.canvas.Y; }
 }
