@@ -18,8 +18,7 @@ class WeatherDownload {
             this.StringConventer(this.server, { City: name, Key: this.key });
 
         return fetch(URL)
-            .then((e) => e.json())
-            .catch(e => console.error(e));
+            .then((e) => e.json());
     }
 }
 

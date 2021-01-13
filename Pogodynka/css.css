@@ -60,10 +60,12 @@ header{
     margin: 15px auto 0 auto;
     flex-wrap: wrap;
     justify-content: center;
+    max-width: 90%;
     transition: 1s all;
 }
 
 .box {
+    cursor: pointer;
     margin-left: 30px;
     margin-right: 30px;
     margin-bottom: 50px;

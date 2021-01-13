@@ -13,10 +13,10 @@ class WeatherHandler {
         if (!tmp.includes(cityName)) {
             tmp.push(cityName);
             LSweather.setWeather(tmp);
-            weatherDownload.GetWeather(cityName).then(this.ShowObj);
+            this.ShowObj(cityName);
         }
         if(first){
-            weatherDownload.GetWeather(cityName).then(this.ShowObj);
+            this.ShowObj(cityName);
         }
     }
 
@@ -25,8 +25,8 @@ class WeatherHandler {
         this.GetWeather(cityName);
     }
 
-    ShowObj = (obj) => {
-        const tmp = new CreateIcon(obj);
+    ShowObj = (cityName) => {
+        const tmp = new CreateIcon(cityName);
 
         this.box.appendChild(tmp.box);
     }

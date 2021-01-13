@@ -1,0 +1,7 @@
+
+
+class WeatherForecast {
+
+}
+
+export { WeatherForecast };
