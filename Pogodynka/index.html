@@ -1,22 +1,33 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <link rel="stylesheet" href="css.css">
+    <link rel="stylesheet" href="../NotePocket/fontello/css/fontello.css">
 </head>
+
 <body>
-    <label>Podaj miasto</label>
-    <input placeholder="miasto" type="text" id="city">
-    <input type="button" value="Akceptuj" id="button">
-    <div id="box">
+    <header>
+        <div id="head">
+            <div id="logo" class="center">
+                <img src="http://openweathermap.org/img/wn/04d.png" alt="Pusto" class="icon">
+                Pogoda
+            </div>
+            <div id="search" class="center">
+                <input type="text" id="city" placeholder="Dodaj miasto">
+                <i class="icon-search-1" id="button"></i>
+            </div>
+        </div>
+    </header>
+    <main>
+        <div id="content" class="center">
 
-    </div>
-
-    <script src="JS/LocalStorage.js" type="module"></script>
-    <script src="JS/LS_weather.js" type="module"></script>
-    <script src="JS/DownloadWeather.js" type="module"></script>
-    <script src="JS/CreateIcon.js" type="module"></script>
+        </div>
+    </main>
     <script src="JS/EventHandler.js" type="module"></script>
 </body>
+
 </html>

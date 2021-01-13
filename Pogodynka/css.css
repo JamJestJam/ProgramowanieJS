@@ -1,0 +1,169 @@
+body{
+    margin: 0;
+    padding: 0;
+    background-color: #202124;
+}
+
+header{
+    position: -webkit-sticky;
+    position: sticky;
+    top: 0;
+    margin-bottom: 15px;
+}
+
+#head{
+    padding: 8px 10px;
+    display: flex;
+    justify-content: center;
+    font-size: 25pt;
+    color: white;
+    border-bottom: 4px #555555 solid;
+    background-color: #202124;
+}
+
+@import url('https://fonts.googleapis.com/css2?family=Anton&display=swap');
+#logo{
+    font-family: 'Anton', sans-serif;
+    font-weight: bolder;
+    text-shadow: black 1px 1px, 
+                black -1px -1px, 
+                black -1px 1px, 
+                black 1px -1px;
+}
+
+#logo>i{
+    text-shadow: black 1px 1px, 
+                black -1px -1px, 
+                black -1px 1px, 
+                black 1px -1px,
+                red 5px 5px;
+}
+
+#button{
+    cursor: pointer;
+}
+
+.center{
+    position: relative;
+    width: 100%;
+    display: flex;
+    align-items: center;
+}
+
+#search{
+    justify-content: flex-end;
+}
+
+#content{
+    position: relative;
+    margin: 15px auto 0 auto;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+    transition: 1s all;
+}
+
+.box {
+    background-color: #a5bbdd;;
+    max-height: 300px;
+    color: black;
+    width: 20vw;
+    height: 60vh;
+    border-radius: 5px;
+    box-shadow: 0 2px 30px rgba(black, 0.2);
+    background: darken(#eff3f9,20%);
+    position: relative;
+    overflow: hidden;
+    transform: translate3d(0, 0, 0);
+    min-width: 200px;
+    min-height: 350px;
+}
+
+.box .icon{
+    width: 150px;
+}
+
+.wave {
+    opacity: 0.3;
+    position: absolute;
+    top: 120%;
+    left: 50%;
+    background: white;
+    width: 500px;
+    height: 500px;
+    margin-left: -250px;
+    margin-top: -250px;
+    transform-origin: 50% 48%;
+    border-radius: 43%;
+    animation: drift 3000ms infinite linear;
+    z-index: 1;
+}
+
+.wave.-three {
+    animation: drift 5000ms infinite linear;
+    z-index: 2 !important;
+    opacity: 0.2;
+}
+
+.wave.-two {
+    animation: drift 7000ms infinite linear;
+    opacity: 0.1;
+    z-index: 3 !important;
+}
+
+.box:after {
+    content: "";
+    display: block;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 11;
+    transform: translate3d(0, 0, 0);
+}
+
+@keyframes drift {
+    from {
+        transform: rotate(0deg);
+    }
+    from {
+        transform: rotate(360deg);
+    }
+}
+
+.info {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    height: 50%;
+    z-index: 4;
+}
+
+.location {
+    text-align: center;
+    font-weight: 800;
+}
+
+.location::first-letter{
+    text-transform: uppercase;
+}
+
+.date {
+    text-align: center;
+    margin-top: 5%;
+    color: lighten(grey, 10%);
+    font-size: 70%;
+}
+
+.temp {
+    font-size: 20pt;
+    margin-top: 10%;
+    text-align: center;
+}
+
+.weathercon {
+    height: 55%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 3em;
+}

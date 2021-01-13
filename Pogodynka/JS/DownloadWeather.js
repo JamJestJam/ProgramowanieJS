@@ -1,6 +1,6 @@
 class WeatherDownload {
     constructor() {
-        this.server = 'https://api.openweathermap.org/data/2.5/weather?q={City}&appid={Key}&units=metric';
+        this.server = 'https://api.openweathermap.org/data/2.5/weather?q={City}&appid={Key}&units=metric&lang=PL';
         this.key = 'a38e5cc25081eaae34374bdb094f0c5f';
     }
 
@@ -17,8 +17,7 @@ class WeatherDownload {
         const URL =
             this.StringConventer(this.server, { City: name, Key: this.key });
 
-        const promise = fetch(URL);
-        return promise
+        return fetch(URL)
             .then((e) => e.json())
             .catch(e => console.error(e));
     }

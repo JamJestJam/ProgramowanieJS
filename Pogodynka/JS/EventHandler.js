@@ -6,7 +6,7 @@ class EventHandle{
         this.button = document.querySelector('#button');
         this.input = document.querySelector('#city');
 
-        this.box = document.querySelector('#box');
+        this.box = document.querySelector('#content');
         this.button.addEventListener('click', ()=>this.GetWeather());
     }
 
