@@ -1,4 +1,3 @@
-import { weatherDownload } from './DownloadWeather.js';
 import { CreateIcon } from './CreateIcon.js';
 import { LSweather } from './LS_weather.js';
 

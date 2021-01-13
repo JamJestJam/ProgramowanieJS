@@ -7,6 +7,12 @@ class EventHandle {
 
         this.button = document.querySelector('#button');
         this.button.addEventListener('click', () => weatherHandler.GetWeatherInput());
+        this.forecast = document.querySelector('#Forecast');
+
+        document.querySelector('#close').addEventListener('click',()=>{
+            this.forecast.classList.add('hidden');
+            console.log(123);
+        });
     }
 }
 

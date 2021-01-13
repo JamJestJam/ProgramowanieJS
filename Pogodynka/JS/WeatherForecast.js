@@ -1,7 +1,0 @@
-
-
-class WeatherForecast {
-
-}
-
-export { WeatherForecast };
