@@ -1,25 +1,12 @@
-import {weatherDownload} from './DownloadWeather.js';
-import {CreateIcon} from './CreateIcon.js';
+import { LSweather } from './LS_weather.js';
+import { weatherHandler } from './WeatherHandler.js';
 
-class EventHandle{
-    constructor(){
+class EventHandle {
+    constructor() {
+        LSweather.firstRun();
+
         this.button = document.querySelector('#button');
-        this.input = document.querySelector('#city');
-
-        this.box = document.querySelector('#content');
-        this.button.addEventListener('click', ()=>this.GetWeather());
-    }
-
-    GetWeather(){
-        const cityName = this.input.value;
-
-        weatherDownload.GetWeather(cityName).then(this.ShowObj);
-    }
-
-    ShowObj=(obj)=>{
-        const tmp = new CreateIcon(obj);
-        
-        this.box.appendChild(tmp.box);
+        this.button.addEventListener('click', () => weatherHandler.GetWeatherInput());
     }
 }
 

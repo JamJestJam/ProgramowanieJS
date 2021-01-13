@@ -1,29 +1,36 @@
 import { LS } from './LocalStorage.js';
+import { weatherHandler } from './WeatherHandler.js';
 
-class LS_Weather{
-    constructor(saveName = 'weather'){
+class LS_Weather {
+    constructor(saveName = 'weather') {
         this.noteName = saveName;
     }
 
-    getNote(){
+    getWeather() {
         const LS_elements = JSON.parse(LS.getItem(this.noteName));
-        return this.mapNote(LS_elements);
+        return this.mapWeather(LS_elements);
     }
 
-    mapNote(element){
-        if (element != undefined){
-            return element.map(note => {
-                note.createDate = new Date(note.createDate);
-                return note;
-            });
+    mapWeather(element) {
+        if (element != undefined) {
+            return element;
+        } else {
+            return [];
         }
     }
 
-    setNote(note){
+    setWeather(note) {
         LS.setItem(this.noteName, JSON.stringify(note));
+    }
+
+    firstRun(){
+        const tmp = this.getWeather();
+        tmp.forEach(element => {
+            weatherHandler.GetWeather(element, true);
+        });
     }
 }
 
 const LSweather = new LS_Weather();
 
-export {LSweather};
+export { LSweather };

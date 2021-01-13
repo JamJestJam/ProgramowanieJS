@@ -2,7 +2,6 @@ class CreateIcon {
     constructor(Obj) {
         this.box = document.createElement('div');
         this.box.classList.add('box');
-        console.log(Obj);
 
         this.box.innerHTML = `
             <div class='wave -one'></div>
