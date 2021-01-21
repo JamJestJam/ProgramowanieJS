@@ -39,6 +39,7 @@ class Game {
 
     CreateBorder() {
         const border = new Border(this.canvasControler, this.gameWidth, this.gameHeight);
+        border.OnColision = () => { this.End(false); };
         this.elements.push(border);
     }
 
@@ -53,7 +54,7 @@ class Game {
 
         this.CreateBorder();
         //create holes
-        for (let i = 0; i < this.holeCount; i++) 
+        for (let i = 0; i < this.holeCount; i++)
             if (!this.CreateCircle(Hole, -width, width, -height, height, this.GetRandom(5, 30), () => { this.End(false); }))
                 i--;
         while (!this.CreateCircle(Win, -width, width, -height, height, 30, () => { this.End(true); }));
@@ -107,10 +108,12 @@ class Game {
         text += '\nChcesz spróbować jeszcze raz?\nczas gry wynosi: ';
         text += (new Date().getTime() - this.startTime.getTime()) / 1000;
         text += ' sekund';
-        if (confirm(text)) {
-            this.Start();
-        }
+        console.log(text);
+        // if (confirm(text)) {
+        //     this.Start();
+        // }
+        this.Start();
     }
 }
 
-export {Game};
+export { Game };

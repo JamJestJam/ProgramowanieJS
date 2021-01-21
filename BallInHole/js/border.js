@@ -20,10 +20,12 @@ class Border extends CanvasObj {
     }
 
     CollideWithPoint(x, y) {
-        if (x < this.x || x > this.x + this.width)
+        if (x < this.x || x > this.x + this.width){
             return true;
-        if (y < this.y || y > this.y + this.height)
+        }
+        if (y < this.y || y > this.y + this.height){
             return true;
+        }
         return false;
     }
 }
